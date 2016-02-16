@@ -2,51 +2,21 @@
 #include <time.h>
 #include <sys/time.h>
 
-typedef struct TimeWatcher
-{
-        double start;
-        double end;
-} TimeWatcher;
-
-void start(TimeWatcher* tw);
-void end(TimeWatcher* tw);
-void print_time_sec(TimeWatcher* tw);
-
-// =================
-// measure time(sec)
-// =================
-
-double gettimeofday_sec()
-{
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return tv.tv_sec + tv.tv_usec * 1e-6;
-}
-
-void start(TimeWatcher* tw)
-{
-      tw->start = gettimeofday_sec();
-}
-
-void end(TimeWatcher* tw)
-{
-     tw->end = gettimeofday_sec();
-}
-
-void print_time_sec(TimeWatcher* tw)
-{
-     printf("%10.10f(sec)\n", tw->end - tw->start);
+double get_dtime(void){
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  return ((double)(tv.tv_sec) + (double)(tv.tv_usec) * 0.001 * 0.001);
 }
 
 int main(){
-	//struct TimeWatcher *tw;
-	//start(tw);
+	double d0, d1;
+	d0 = get_dtime();
 	int i;
 	for(i=0; i<100; i++){
 		printf("t\n");
 	}
-	//end(tw);
-	//print_time_sec(tw);
-printf("hello\n");	
+	d1 = get_dtime();
+	printf("elapsed: %f", d1 - d0);
+	printf("hello\n");	
 return 0;
 }
