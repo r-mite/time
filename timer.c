@@ -39,13 +39,14 @@ void print_time_sec(TimeWatcher* tw)
 }
 
 int main(){
-	TimeWatcher tw;
-	start(tw);
+	//struct TimeWatcher *tw;
+	//start(tw);
 	int i;
 	for(i=0; i<100; i++){
 		printf("t\n");
 	}
-	end(tw);
-	print_time_sec(tw);
-	return 0;
+	//end(tw);
+	//print_time_sec(tw);
+printf("hello\n");	
+return 0;
 }
